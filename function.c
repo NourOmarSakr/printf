@@ -3,19 +3,6 @@
 #include "main.h"
 
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
-
-/**
  * _printf - produces output according to a format
  * @format: a character string composed of zero or more directives
  *
@@ -28,6 +15,7 @@ int _printf(const char *format, ...)
 	int count = 0;
 	char c;
 	char *s;
+	int d;
 
 	if (format == NULL)
 		return (-1);
@@ -60,6 +48,11 @@ int _printf(const char *format, ...)
 				case '%':
 					_putchar('%');
 					count++;
+					break;
+				case 'd':
+				case 'i':
+					d = va_arg(args, int);
+					count += _print_int(d);
 					break;
 				default:
 					_putchar('%');
